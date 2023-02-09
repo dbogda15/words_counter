@@ -1,6 +1,6 @@
 
 import java.util.*;
-import static service.words_counter_service.*;
+import static service.WordsCounterService.*;
 public class Main {
     public static void main(String[] args) {
 

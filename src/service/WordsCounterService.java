@@ -3,7 +3,7 @@ package service;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class words_counter_service {
+public class WordsCounterService {
 
     public static void printHello() {
         System.out.println("\nHello! What do you want? " +
@@ -22,6 +22,7 @@ public class words_counter_service {
 
         wordsMap = wordsMap.entrySet()
                 .stream()
+                .sorted(Map.Entry.comparingByKey())
                 .sorted(Map.Entry.comparingByValue(Collections.reverseOrder()))
                 .limit(10)
                 .collect(Collectors.toMap(
@@ -56,13 +57,7 @@ public class words_counter_service {
         HashMap<String, Integer> mapOfWords = new HashMap<>();
         while (scanner2.hasNext()) {
             String word = scanner2.next();
-            if (!mapOfWords.containsKey(word)) {
-                mapOfWords.put(word,1);
-            } else {
-                int countWord = mapOfWords.get(word) + 1;
-                mapOfWords.remove(word);
-                mapOfWords.put(word, countWord);
-            }
+            mapOfWords.put(word, mapOfWords.containsKey(word) ? (mapOfWords.get(word) + 1) : 1);
         }
         return mapOfWords;
     }
